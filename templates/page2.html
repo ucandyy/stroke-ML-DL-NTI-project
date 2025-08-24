@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stroke Prediction Website</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #3b1c99, #8e2de2);
+      font-family: "Segoe UI", sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Section */
+    header {
+      background: rgba(0,0,0,0.25);
+      padding: 80px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+    header p {
+      font-size: 20px;
+      max-width: 850px;
+      margin: 0 auto;
+      line-height: 1.7;
+      color: #f1f1f1;
+    }
+
+    /* Form Card */
+    .card {
+      border-radius: 20px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+      background: white;
+      color: black;
+    }
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+    .icon-input {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .icon-input i {
+      font-size: 18px;
+      color: #5a67d8;
+      width: 24px;
+      text-align: center;
+    }
+    .btn-gradient {
+      background: linear-gradient(to right, #ff7e5f, #ff416c);
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 12px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+    .btn-gradient:hover {
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0,0,0,0.25);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>🧠 Stroke Prediction System</h1>
+    <p>
+      Welcome to our Stroke Prediction Tool.  
+      Fill in your health and lifestyle details below to check the risk of stroke.  
+      This tool is designed to raise awareness and help you take preventive measures.
+    </p>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <!-- wider column -->
+      <div class="col-lg-8 col-md-10">
+        <div class="card p-5">
+          <div class="title">Patient Information</div>
+        <form method="POST" action="{{ url_for('info') }}" id="predictionForm">
+
+  <div class="row g-3">
+    <div class="col-md-6 icon-input">
+      <i class="bi bi-gender-ambiguous"></i>
+      <select class="form-select" id="gender" required>
+        <option>Select gender</option>
+        <option>Male</option>
+        <option>Female</option>
+       
+      </select>
+    </div>
+
+    <div class="col-md-6 icon-input">
+      <i class="bi bi-calendar-event"></i>
+      <input type="number" class="form-control" id="age" placeholder="Enter age" required>
+    </div>
+
+    <div class="col-md-6 icon-input">
+      <i class="bi bi-heart-pulse"></i>
+      <select class="form-select" id="hypertension">
+        <option>Hypertension?</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 icon-input">
+      <i class="bi bi-heartbreak"></i>
+      <select class="form-select" id="heart_disease">
+        <option>Heart Disease?</option>
+        <option>No</option>
+        <option>Yes</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 icon-input">
+      <i class="bi bi-people"></i>
+      <select class="form-select" id="ever_married">
+        <option>Ever Married?</option>
+        <option>No</option>
+        <option>Yes</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 icon-input">
+      <i class="bi bi-briefcase"></i>
+      <select class="form-select" id="work_type">
+        <option>Work Type?</option>
+        <option>Private</option>
+        <option>Self-employed</option>
+        <option>Govt job</option>
+        <option>Children</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 icon-input">
+      <i class="bi bi-house"></i>
+      <select class="form-select" id="residence_type">
+        <option>Residence Type</option>
+        <option>Urban</option>
+        <option>Rural</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 icon-input">
+      <i class="bi bi-droplet"></i>
+      <input type="number" class="form-control" id="avg_glucose_level" placeholder="Enter avg glucose" required>
+    </div>
+
+    <div class="col-md-6 icon-input">
+      <i class="bi bi-activity"></i>
+      <input type="number" class="form-control" id="bmi" placeholder="Enter BMI" required>
+    </div>
+
+    <div class="col-md-6 icon-input">
+      <i class="bi bi-wind"></i>
+      <select class="form-select" id="smoking_status" required>
+        <option>Smoking</option>
+        <option>Never</option>
+        <option>Formerly smoked</option>
+        <option>Smokes</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <button type="submit" class="btn-gradient w-100">Predict</button>
+  </div>
+</form>
+
+<!-- مكان النتيجة -->
+<div id="result" class="alert mt-4 d-none"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Stroke Prediction Project | Designed with ❤️</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const form = document.getElementById("strokeForm");
+    form.addEventListener("submit", function(e){
+      e.preventDefault();  // منع reload الصفحة
+      const formData = new FormData(form);
+
+      fetch("/predict", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("result").innerText = data.result;
+      })
+      .catch(err => {
+        console.error(err);
+        alert("حصل خطأ، حاول مرة تانية!");
+      });
+    });
+  </script>
+
+</body>
+</html>
